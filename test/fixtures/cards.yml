@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  suit: 
+  name: 
+  cost: 1
+
+two:
+  suit: 
+  name: 
+  cost: 1
