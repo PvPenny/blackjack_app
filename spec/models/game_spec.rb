@@ -20,6 +20,14 @@ RSpec.describe Game, type: :model do
     @game = Game.new(1,@user)
   end
   
+  it 'update total score' do
+    20.times {
+      game = Game.new(1,@user)
+      game.start_game
+      game.end_game
+    }
+    @user.total_score.should_not eql 0
+  end
  
   it 'should take 2 cards for each player and diller' do
     size = @game.deck_size
