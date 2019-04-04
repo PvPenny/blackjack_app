@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     leaderboard = User.leaderboard
     leaderboard.size.should eql 10
     leaderboard.each_with_index do |player, index|
-      player[:score].should be > leaderboard[index+1][:score] if leaderboard[index+1].present?
+      player[:score].should be >= leaderboard[index+1][:score] if leaderboard[index+1].present?
     end
   end
   

@@ -5,6 +5,7 @@ class Game
     raise 'must be at least one player' if players.blank?
     @players = []
     @players << players
+    @players.flatten!
     @players.each{|player| player.start_game}
     @deck = []
     @dealer_hand = []
@@ -43,12 +44,15 @@ class Game
     winner_player = @players.max{|player1, player2| player1.score <=> player2.score}
     all_cards = [{nickname: 'dealer', cards: {score: dealer_score, hand: @dealer_hand}}]
     all_cards << @players.map{|player|{nickname: player.nickname, hand: player.look_hand}}
+    
     if winner_player.score > dealer_score
       winner_player.update!(total_score: winner_player.total_score+winner_player.score)
-      return {status: "Победил #{winner_player.nickname}", cards: all_cards}
+      winner = winner_player.nickname
     else
-      return {status: 'Победило казино', cards: all_cards}
+      winner = 'Диллер'
     end
+    return {status: "#{winner} победил", cards: all_cards}
+
   end
   
   def draw user

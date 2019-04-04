@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   namespace :api do
     resources :cards
     namespace :blackjack do
-      post 'connect'
+      post 'draw'
       get 'game_status'
+      post 'start_game'
+      post 'stop'
     end
   end
   
