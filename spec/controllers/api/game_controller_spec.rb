@@ -37,6 +37,15 @@ RSpec.describe Api::BlackjackController, type: :controller do
       response.status.should eql 422
     end
     
+    it 'should show score after end game' do
+      post :start_game
+      post :stop
+      response.status.should eql 200
+      body = JSON.parse(response.body)
+      body['status'].should_not be_nil
+      body['cards'].count.should eql 2
+    end
+    
   end
   
  
